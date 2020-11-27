@@ -25,9 +25,8 @@ namespace Superheroes
             string valorActual = numeroImagenTextBlock.Text;
             string[] valores = valorActual.Split('/');
             int indiceActual = Int32.Parse(valores[0]);
-            int indiceMaximo = heroes.Count;
             int indice;
-            if (indiceActual == indiceMaximo)
+            if (indiceActual == heroes.Count)
                 indice = 1;
             else
                 indice = indiceActual + 1;
@@ -39,10 +38,9 @@ namespace Superheroes
             string valorActual = numeroImagenTextBlock.Text;
             string[] valores = valorActual.Split('/');
             int indiceActual = Int32.Parse(valores[0]);
-            int indiceMaximo = heroes.Count;
             int indice;
             if (indiceActual == 1)
-                indice = indiceMaximo;
+                indice = heroes.Count;
             else
                 indice = indiceActual - 1;
             BindingDelObjeto(indice);
@@ -53,11 +51,11 @@ namespace Superheroes
             indice--;
             nombreHeroeTextBlock.DataContext = heroes[indice];
             imagenHeroeVillanoImage.DataContext = heroes[indice];
+            pestaña1DockPanel.DataContext = heroes[indice];
         }
         public void ActualizaIndice(int indice)
         {
             numeroImagenTextBlock.Text = indice.ToString()+"/"+heroes.Count.ToString();
-           // MessageBox.Show(indice.ToString() + "/" + heroes.Count.ToString());
         }
     }
 }

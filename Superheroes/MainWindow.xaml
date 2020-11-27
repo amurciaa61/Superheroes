@@ -71,11 +71,13 @@
             <Setter Property="IsEnabled"
                     Value="{Binding ElementName=heroeRadioButton, Path=IsChecked, Converter={StaticResource conversor}}" />
         </Style>
+        
+        <local:ConvertidorBackground x:Key="conversorBG" />
     </Window.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="Ver superhéroes">
-                <DockPanel Background="Aqua">
+                <DockPanel x:Name="pestaña1DockPanel" Background="{Binding Path=Villano,Converter={StaticResource conversorBG}}">
                     <DockPanel DockPanel.Dock="Top"
                                LastChildFill="False">
                         <TextBlock x:Name="nombreHeroeTextBlock"
