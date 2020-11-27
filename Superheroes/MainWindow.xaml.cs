@@ -52,6 +52,8 @@ namespace Superheroes
             nombreHeroeTextBlock.DataContext = heroes[indice];
             imagenHeroeVillanoImage.DataContext = heroes[indice];
             pestaña1DockPanel.DataContext = heroes[indice];
+            vengadorImage.DataContext = heroes[indice];
+            xmenImage.DataContext = heroes[indice];
         }
         public void ActualizaIndice(int indice)
         {

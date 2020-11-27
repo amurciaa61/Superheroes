@@ -12,14 +12,27 @@
         Icon="Imagenes/shield.ico"
         mc:Ignorable="d">
     <Window.Resources>
+
         <local:Covertidor x:Key="conversor" />
+        <local:ConvertidorBackground x:Key="conversorBG" />
+        <local:ConvertidorImagen x:Key="convertidorIMG" />
         <!-- Imagenes de flecha -->
         <Style TargetType="{x:Type Image}"
                x:Key="imagenesNavegacion">
             <Setter Property="MinWidth"
-                    Value="20" />
+                    Value="23" />
             <Setter Property="Height"
-                    Value="20" />
+                    Value="23" />
+        </Style>
+        <!-- Imagenes de tipo de héroe -->
+        <Style TargetType="{x:Type Image}"
+               x:Key="imagenesHeroe">
+            <Setter Property="Width"
+                    Value="50" />
+            <Setter Property="Height"
+                    Value="50" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Right" />
         </Style>
         <!--  Imagen Info  -->
         <Style TargetType="{x:Type Image}"
@@ -71,13 +84,13 @@
             <Setter Property="IsEnabled"
                     Value="{Binding ElementName=heroeRadioButton, Path=IsChecked, Converter={StaticResource conversor}}" />
         </Style>
-        
-        <local:ConvertidorBackground x:Key="conversorBG" />
+
     </Window.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="Ver superhéroes">
-                <DockPanel x:Name="pestaña1DockPanel" Background="{Binding Path=Villano,Converter={StaticResource conversorBG}}">
+                <DockPanel x:Name="pestaña1DockPanel"
+                           Background="{Binding Path=Villano,Converter={StaticResource conversorBG}}">
                     <DockPanel DockPanel.Dock="Top"
                                LastChildFill="False">
                         <TextBlock x:Name="nombreHeroeTextBlock"
@@ -89,11 +102,18 @@
                             <TextBlock.Effect>
                                 <DropShadowEffect />
                             </TextBlock.Effect></TextBlock>
-                        <Image Source="Imagenes/xmen.png"
-                               Width="50"
-                               Height="50"
-                               HorizontalAlignment="Right"
-                               DockPanel.Dock="Right" />
+                        <StackPanel DockPanel.Dock="Right"
+                                    Orientation="Horizontal">
+                            <Image x:Name="vengadorImage"
+                                Visibility="{Binding Path=Vengador,Converter={StaticResource convertidorIMG}}"
+                                Source="Imagenes/avengers.png"
+                                   Style="{StaticResource imagenesHeroe}" 
+                                   Margin="0,0,10,0"/>
+                            <Image x:Name="xmenImage"
+                                Visibility="{Binding Path=Xmen,Converter={StaticResource convertidorIMG}}" 
+                                Source="Imagenes/xmen.png"
+                                   Style="{StaticResource imagenesHeroe}" />
+                        </StackPanel>
                     </DockPanel>
                     <StackPanel HorizontalAlignment="Center"
                                 DockPanel.Dock="Bottom"
@@ -101,10 +121,12 @@
                                 Margin="0,20,0,10">
                         <Image x:Name="flechaAtrasImage"
                                Style="{StaticResource imagenesNavegacion}"
-                               Source="Imagenes/arrow.png" 
-                               MouseUp="flechaAtrasImage_MouseUp"/>
+                               Source="Imagenes/arrow.png"
+                               MouseUp="flechaAtrasImage_MouseUp" />
                         <TextBlock x:Name="numeroImagenTextBlock"
                                    Text="0/0"
+                                   Margin="5,0,5,0"
+                                   FontWeight="Bold"
                                    FontSize="20" />
                         <Image x:Name="flechaAdelanteImage"
                                Style="{StaticResource imagenesNavegacion}"
