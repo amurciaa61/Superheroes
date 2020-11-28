@@ -12,7 +12,6 @@
         Icon="Imagenes/shield.ico"
         mc:Ignorable="d">
     <Window.Resources>
-
         <local:Covertidor x:Key="conversor" />
         <local:ConvertidorBackground x:Key="conversorBG" />
         <local:ConvertidorImagen x:Key="convertidorIMG" />
@@ -33,6 +32,8 @@
                     Value="50" />
             <Setter Property="HorizontalAlignment"
                     Value="Right" />
+            <Setter Property="Visibility"
+                    Value="{Binding Path=Xmen,Converter={StaticResource convertidorIMG}}" />
         </Style>
         <!--  Imagen Info  -->
         <Style TargetType="{x:Type Image}"
@@ -84,7 +85,6 @@
             <Setter Property="IsEnabled"
                     Value="{Binding ElementName=heroeRadioButton, Path=IsChecked, Converter={StaticResource conversor}}" />
         </Style>
-
     </Window.Resources>
     <Grid x:Name="principalGrid">
         <TabControl>
@@ -105,13 +105,11 @@
                         <StackPanel DockPanel.Dock="Right"
                                     Orientation="Horizontal">
                             <Image x:Name="vengadorImage"
-                                Visibility="{Binding Path=Vengador,Converter={StaticResource convertidorIMG}}"
-                                Source="Imagenes/avengers.png"
-                                   Style="{StaticResource imagenesHeroe}" 
-                                   Margin="0,0,10,0"/>
+                                   Source="Imagenes/avengers.png"
+                                   Style="{StaticResource imagenesHeroe}"
+                                   Margin="0,0,10,0" />
                             <Image x:Name="xmenImage"
-                                Visibility="{Binding Path=Xmen,Converter={StaticResource convertidorIMG}}" 
-                                Source="Imagenes/xmen.png"
+                                   Source="Imagenes/xmen.png"
                                    Style="{StaticResource imagenesHeroe}" />
                         </StackPanel>
                     </DockPanel>
@@ -163,7 +161,7 @@
                             <TextBlock Text="Nombre del superhéroe" />
                             <Image Style="{StaticResource imagenInfo}" />
                         </StackPanel>
-                        <TextBox x:Name="nombreSuperheroeTexBox"/>
+                        <TextBox x:Name="nombreSuperheroeTexBox" />
                         <StackPanel Orientation="Horizontal"
                                     Style="{StaticResource stackPanelFormulario}">
                             <TextBlock Text="Imagen" />
@@ -185,7 +183,7 @@
                                                  GroupName="grupoTipo"
                                                  IsChecked="True" />
                                     <RadioButton x:Name="villanoRadioButton"
-                                        Margin="8,2,0,4"
+                                                 Margin="8,2,0,4"
                                                  Content="Villano"
                                                  GroupName="grupoTipo" />
                                 </StackPanel>
@@ -195,26 +193,25 @@
                                     Style="{StaticResource borde}">
                                 <StackPanel>
                                     <CheckBox x:Name="vengadoresCheckBox"
-                                        Margin="8,4,0,2"
+                                              Margin="8,4,0,2"
                                               Content="Vengadores" />
                                     <CheckBox x:Name="xmeCheckBox"
-                                        Margin="8,2,0,4"
+                                              Margin="8,2,0,4"
                                               Content="X-Men" />
                                 </StackPanel>
                             </Border>
                         </Grid>
-                        <StackPanel
-                            Margin="0,30,0,0"
+                        <StackPanel Margin="0,30,0,0"
                                     HorizontalAlignment="Center"
                                     Orientation="Horizontal">
                             <Button Content="Aceptar"
                                     IsDefault="True"
-                                    Style="{StaticResource botonesFormulario}" 
-                                    Click="AceptarButton"/>
+                                    Style="{StaticResource botonesFormulario}"
+                                    Click="AceptarButton" />
                             <Button Content="Limpiar"
                                     Style="{StaticResource botonesFormulario}"
-                                    IsCancel="true" 
-                                    Click="LimpiarButton"/>
+                                    IsCancel="true"
+                                    Click="LimpiarButton" />
                         </StackPanel>
                     </StackPanel>
                     <Border Grid.Column="1"
