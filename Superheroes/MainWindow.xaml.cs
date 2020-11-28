@@ -46,8 +46,7 @@ namespace Superheroes
         }
         public int ObtenerIndiceActual()
         {
-            string valorActual = numeroImagenTextBlock.Text;
-            string[] valores = valorActual.Split('/');
+            string[] valores = numeroImagenTextBlock.Text.Split('/');
             return Int32.Parse(valores[0]);
         }
         private void AceptarButton(object sender, RoutedEventArgs e)
