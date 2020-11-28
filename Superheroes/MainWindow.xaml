@@ -32,8 +32,6 @@
                     Value="50" />
             <Setter Property="HorizontalAlignment"
                     Value="Right" />
-            <Setter Property="Visibility"
-                    Value="{Binding Path=Xmen,Converter={StaticResource convertidorIMG}}" />
         </Style>
         <!--  Imagen Info  -->
         <Style TargetType="{x:Type Image}"
@@ -106,10 +104,12 @@
                                     Orientation="Horizontal">
                             <Image x:Name="vengadorImage"
                                    Source="Imagenes/avengers.png"
+                                   Visibility="{Binding Path=Vengador,Converter={StaticResource convertidorIMG}}"
                                    Style="{StaticResource imagenesHeroe}"
                                    Margin="0,0,10,0" />
                             <Image x:Name="xmenImage"
                                    Source="Imagenes/xmen.png"
+                                   Visibility="{Binding Path=Xmen,Converter={StaticResource convertidorIMG}}"
                                    Style="{StaticResource imagenesHeroe}" />
                         </StackPanel>
                     </DockPanel>
