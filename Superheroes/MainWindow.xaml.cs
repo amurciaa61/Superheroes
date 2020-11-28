@@ -20,44 +20,58 @@ namespace Superheroes
             ActualizaIndice(1);
         }
 
-        private void flechaAdelanteImage_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void FlechaAdelanteImage_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            string valorActual = numeroImagenTextBlock.Text;
-            string[] valores = valorActual.Split('/');
-            int indiceActual = Int32.Parse(valores[0]);
-            int indice;
-            if (indiceActual == heroes.Count)
-                indice = 1;
-            else
-                indice = indiceActual + 1;
+            int indiceActual = ObtenerIndiceActual();
+            int indice = (indiceActual == heroes.Count) ? 1 : indiceActual + 1;
             BindingDelObjeto(indice);
             ActualizaIndice(indice);
         }
-        private void flechaAtrasImage_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void FlechaAtrasImage_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            string valorActual = numeroImagenTextBlock.Text;
-            string[] valores = valorActual.Split('/');
-            int indiceActual = Int32.Parse(valores[0]);
-            int indice;
-            if (indiceActual == 1)
-                indice = heroes.Count;
-            else
-                indice = indiceActual - 1;
+            int indiceActual = ObtenerIndiceActual();
+            int indice = (indiceActual == 1) ? heroes.Count : indiceActual - 1;
             BindingDelObjeto(indice);
             ActualizaIndice(indice);
         }
         public void BindingDelObjeto(int indice)
         {
             indice--;
-            nombreHeroeTextBlock.DataContext = heroes[indice];
-            imagenHeroeVillanoImage.DataContext = heroes[indice];
-            pestaña1DockPanel.DataContext = heroes[indice];
-            vengadorImage.DataContext = heroes[indice];
-            xmenImage.DataContext = heroes[indice];
+            Superheroe superheroe = heroes[indice];
+            principalGrid.DataContext = superheroe;
         }
         public void ActualizaIndice(int indice)
         {
             numeroImagenTextBlock.Text = indice.ToString()+"/"+heroes.Count.ToString();
+        }
+        public int ObtenerIndiceActual()
+        {
+            string valorActual = numeroImagenTextBlock.Text;
+            string[] valores = valorActual.Split('/');
+            return Int32.Parse(valores[0]);
+        }
+        private void AceptarButton(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Superhéroe insertado con éxito", "Superhéroes",MessageBoxButton.OK,MessageBoxImage.Information);
+            bool vengadores = (vengadoresCheckBox.IsChecked == true);
+            bool heroe = (heroeRadioButton.IsChecked == true);
+            bool villano = (villanoRadioButton.IsChecked == true);
+            bool xmen = (xmeCheckBox.IsChecked == true);
+            heroes.Add(new Superheroe(nombreSuperheroeTexBox.Text, imagenSuperheroeTexBox.Text, vengadores, xmen, heroe, villano));
+            ActualizaIndice(ObtenerIndiceActual());
+            LimpiarFormulario();
+        }
+
+        private void LimpiarButton(object sender, RoutedEventArgs e)
+        {
+            LimpiarFormulario();
+
+        }
+        private void LimpiarFormulario()
+        {
+            nombreSuperheroeTexBox.Text = "";
+            imagenSuperheroeTexBox.Text = "";
+            heroeRadioButton.IsChecked = true;
         }
     }
 }

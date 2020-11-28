@@ -6,6 +6,7 @@ namespace Superheroes
     class Superheroe : INotifyPropertyChanged
     {
         public string Nombre { get; set; }
+      
         public string Imagen { get; set; }
         public bool Vengador { get; set; }
         public bool Xmen { get; set; }
@@ -27,6 +28,10 @@ namespace Superheroes
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public static List<Superheroe> GetSamples()
         {

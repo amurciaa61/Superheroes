@@ -16,6 +16,7 @@
         <local:Covertidor x:Key="conversor" />
         <local:ConvertidorBackground x:Key="conversorBG" />
         <local:ConvertidorImagen x:Key="convertidorIMG" />
+        <local:Superheroe x:Key="superheroe"/>
         <!-- Imagenes de flecha -->
         <Style TargetType="{x:Type Image}"
                x:Key="imagenesNavegacion">
@@ -86,7 +87,7 @@
         </Style>
 
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="principalGrid">
         <TabControl>
             <TabItem Header="Ver superhéroes">
                 <DockPanel x:Name="pestaña1DockPanel"
@@ -122,7 +123,7 @@
                         <Image x:Name="flechaAtrasImage"
                                Style="{StaticResource imagenesNavegacion}"
                                Source="Imagenes/arrow.png"
-                               MouseUp="flechaAtrasImage_MouseUp" />
+                               MouseUp="FlechaAtrasImage_MouseUp" />
                         <TextBlock x:Name="numeroImagenTextBlock"
                                    Text="0/0"
                                    Margin="5,0,5,0"
@@ -132,7 +133,7 @@
                                Style="{StaticResource imagenesNavegacion}"
                                RenderTransformOrigin="0.5,0.5"
                                Source="Imagenes/arrow.png"
-                               MouseUp="flechaAdelanteImage_MouseUp">
+                               MouseUp="FlechaAdelanteImage_MouseUp">
                             <Image.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleX="-1"
@@ -163,7 +164,7 @@
                             <TextBlock Text="Nombre del superhéroe" />
                             <Image Style="{StaticResource imagenInfo}" />
                         </StackPanel>
-                        <TextBox x:Name="nombreSuperheroeTexBox" />
+                        <TextBox x:Name="nombreSuperheroeTexBox"/>
                         <StackPanel Orientation="Horizontal"
                                     Style="{StaticResource stackPanelFormulario}">
                             <TextBlock Text="Imagen" />
@@ -184,7 +185,8 @@
                                                  Content="Héroe"
                                                  GroupName="grupoTipo"
                                                  IsChecked="True" />
-                                    <RadioButton Margin="8,2,0,4"
+                                    <RadioButton x:Name="villanoRadioButton"
+                                        Margin="8,2,0,4"
                                                  Content="Villano"
                                                  GroupName="grupoTipo" />
                                 </StackPanel>
@@ -193,22 +195,27 @@
                                     Margin="8,0,0,0"
                                     Style="{StaticResource borde}">
                                 <StackPanel>
-                                    <CheckBox Margin="8,4,0,2"
+                                    <CheckBox x:Name="vengadoresCheckBox"
+                                        Margin="8,4,0,2"
                                               Content="Vengadores" />
-                                    <CheckBox Margin="8,2,0,4"
+                                    <CheckBox x:Name="xmeCheckBox"
+                                        Margin="8,2,0,4"
                                               Content="X-Men" />
                                 </StackPanel>
                             </Border>
                         </Grid>
-                        <StackPanel Margin="0,30,0,0"
+                        <StackPanel x:Name="xmenCheckBox"
+                            Margin="0,30,0,0"
                                     HorizontalAlignment="Center"
                                     Orientation="Horizontal">
                             <Button Content="Aceptar"
                                     IsDefault="True"
-                                    Style="{StaticResource botonesFormulario}" />
+                                    Style="{StaticResource botonesFormulario}" 
+                                    Click="AceptarButton"/>
                             <Button Content="Limpiar"
                                     Style="{StaticResource botonesFormulario}"
-                                    IsCancel="true" />
+                                    IsCancel="true" 
+                                    Click="LimpiarButton"/>
                         </StackPanel>
                     </StackPanel>
                     <Border Grid.Column="1"
