@@ -16,7 +16,6 @@
         <local:Covertidor x:Key="conversor" />
         <local:ConvertidorBackground x:Key="conversorBG" />
         <local:ConvertidorImagen x:Key="convertidorIMG" />
-        <local:Superheroe x:Key="superheroe"/>
         <!-- Imagenes de flecha -->
         <Style TargetType="{x:Type Image}"
                x:Key="imagenesNavegacion">
