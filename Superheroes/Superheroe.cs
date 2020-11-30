@@ -6,15 +6,30 @@ namespace Superheroes
     class Superheroe : INotifyPropertyChanged
     {
         public string Nombre { get; set; }
-      
+
         public string Imagen { get; set; }
         public bool Vengador { get; set; }
         public bool Xmen { get; set; }
-        public bool Heroe { get; set; }
+        private bool _heroe;
+
+        public bool Heroe
+        {
+            get { return _heroe; }
+            set
+            {
+                if (_heroe != value)
+                {
+                    _heroe = value;
+                    NotifyPropertyChanged("Heroe");
+                }
+            }
+        }
+
         public bool Villano { get; set; }
 
         public Superheroe()
         {
+
         }
 
         public Superheroe(string nombre, string imagen, bool vengador, bool xmen, bool heroe, bool villano)

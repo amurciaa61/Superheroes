@@ -11,10 +11,12 @@ namespace Superheroes
     public partial class MainWindow : Window
     {
         List<Superheroe> heroes;
+        Superheroe heroe = null;     
         
         public MainWindow()
         {
             InitializeComponent();
+            
             heroes = Superheroe.GetSamples();
             BindingDelObjeto(1);
             ActualizaIndice(1);
@@ -37,8 +39,10 @@ namespace Superheroes
         public void BindingDelObjeto(int indice)
         {
             indice--;
-            Superheroe superheroe = heroes[indice];
-            principalGrid.DataContext = superheroe;
+            pestaña1DockPanel.DataContext = heroes[indice];
+            heroe = new Superheroe();
+            pestaña2Grid.DataContext = heroe;
+            heroe.Heroe = true;
         }
         public void ActualizaIndice(int indice)
         {
@@ -51,12 +55,9 @@ namespace Superheroes
         }
         private void AceptarButton(object sender, RoutedEventArgs e)
         {
+            pestaña2Grid.DataContext = heroe;
             MessageBox.Show("Superhéroe insertado con éxito", "Superhéroes",MessageBoxButton.OK,MessageBoxImage.Information);
-            bool vengadores = (vengadoresCheckBox.IsChecked == true);
-            bool heroe = (heroeRadioButton.IsChecked == true);
-            bool villano = (villanoRadioButton.IsChecked == true);
-            bool xmen = (xmeCheckBox.IsChecked == true);
-            heroes.Add(new Superheroe(nombreSuperheroeTexBox.Text, imagenSuperheroeTexBox.Text, vengadores, xmen, heroe, villano));
+            heroes.Add(heroe);
             ActualizaIndice(ObtenerIndiceActual());
             LimpiarFormulario();
         }
@@ -68,9 +69,9 @@ namespace Superheroes
         }
         private void LimpiarFormulario()
         {
-            nombreSuperheroeTexBox.Text = "";
-            imagenSuperheroeTexBox.Text = "";
-            heroeRadioButton.IsChecked = true;
+            heroe = new Superheroe();
+            pestaña2Grid.DataContext = heroe;
+            heroe.Heroe = true;
         }
     }
 }
